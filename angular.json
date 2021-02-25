@@ -2,12 +2,6 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "schematics": {
-    "@schematics/angular:component": {
-      "displayBlock": true,
-      "style": "scss"
-    }
-  },
   "projects": {
     "angular-boilerplate": {
       "projectType": "application",
@@ -67,7 +61,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-boilerplate:build"
+            "browserTarget": "angular-boilerplate:build",
+            "host": "0.0.0.0",
+            "port": 4200,
+            "proxyConfig": "src/proxy.config.js"
           },
           "configurations": {
             "production": {
@@ -107,6 +104,12 @@
           }
         }
       }
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "displayBlock": true,
+      "style": "scss"
     }
   }
 }
