@@ -1,6 +1,9 @@
-# AngularBoilerplate
+# Steffen's Angular Boilerplate Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
+This project is based on [Angular CLI](https://github.com/angular/angular-cli) on version 11.2.2. The default CLI project setup has been adapted:
+
+- Karma has been replaced by jest as the unit test runner
+- 
 
 ## Development server
 
@@ -16,7 +19,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `jest` to execute the unit tests via [jest](https://jestjs.io/).
 
 ## Running end-to-end tests
 
