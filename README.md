@@ -3,11 +3,14 @@
 This project is based on [Angular CLI](https://github.com/angular/angular-cli) on version 11.2.2. The default CLI project setup has been adapted:
 
 - Karma has been replaced by jest as the unit test runner
-- 
+- tslint and Codelyzer have been replaced by eslint
+- Basic mock backend has been included based on [json-server](https://github.com/typicode/json-server)
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+The mocked backend can be used as a datasource for the application. It is started with `npm run backend-mock` and served on port 9080. The proxy.config.js of the Angular development server is already set up to use this backend.
 
 ## Code scaffolding
 
