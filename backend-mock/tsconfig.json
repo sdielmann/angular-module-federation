@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "commonjs",
+    "sourceMap": false,
+    "esModuleInterop": true
+  }
+}
