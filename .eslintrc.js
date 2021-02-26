@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   ignorePatterns: [
+    'e2e/**/*',
     'projects/**/*'
   ],
   overrides: [
@@ -10,8 +11,7 @@ module.exports = {
       ],
       parserOptions: {
         project: [
-          'tsconfig.json',
-          'e2e/tsconfig.json'
+          'tsconfig.json'
         ],
         createDefaultProgram: true
       },

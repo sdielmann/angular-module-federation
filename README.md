@@ -10,6 +10,8 @@ This project is based on [Angular CLI](https://github.com/angular/angular-cli) o
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+You can also test the application from a different device (e.g. your smartphone) in the same network. In order to do so, you must serve the app with `ng serve --host 0.0.0.0` which will make it accessible from outside the localhost. You can access the app by opening your local IP address and port in the browser, e.g. `http://192.168.100.1:4200`.
+
 The mocked backend can be used as a datasource for the application. It is started with `npm run backend-mock` and served on port 9080. The proxy.config.js of the Angular development server is already set up to use this backend.
 
 ## Code scaffolding
