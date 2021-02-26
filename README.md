@@ -2,8 +2,9 @@
 
 This project is based on [Angular CLI](https://github.com/angular/angular-cli) on version 11.2.2. The default CLI project setup has been adapted:
 
-- Karma has been replaced by jest as the unit test runner
-- tslint and Codelyzer have been replaced by eslint
+- Karma has been replaced by [jest](https://jestjs.io/) as the unit test runner
+- Jasmine has been replace by [Cucumber](https://github.com/cucumber/cucumber-js) and [chai](https://www.chaijs.com/) in e2e tests
+- tslint and Codelyzer have been replaced by [eslint](https://eslint.org/)
 - Basic mock backend has been included based on [json-server](https://github.com/typicode/json-server)
 
 ## Development server
