@@ -2,8 +2,11 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
+  "cli": {
+    "packageManager": "yarn"
+  },
   "projects": {
-    "angular-boilerplate": {
+    "mf-shell": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -11,9 +14,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
-            "outputPath": "dist/angular-boilerplate",
+            "customWebpackConfig": {
+              "path": "webpack.config.ts"
+            },
+            "outputPath": "dist/mf-shell",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -59,22 +65,22 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "angular-boilerplate:build",
+            "browserTarget": "mf-shell:build",
             "port": 4200,
             "proxyConfig": "src/proxy.config.js"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-boilerplate:build:production"
+              "browserTarget": "mf-shell:build:production"
             }
           }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular-builders/custom-webpack:extract-i18n",
           "options": {
-            "browserTarget": "angular-boilerplate:build"
+            "browserTarget": "mf-shell:build"
           }
         },
         "lint": {
@@ -90,11 +96,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-boilerplate:serve"
+            "devServerTarget": "mf-shell:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-boilerplate:serve:production"
+              "devServerTarget": "mf-shell:serve:production"
             }
           }
         }
