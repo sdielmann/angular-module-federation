@@ -11,7 +11,7 @@ export default (config: Configuration, options: CustomWebpackBrowserSchema, targ
   config.plugins.push(
     new container.ModuleFederationPlugin({
       remotes: {
-        'contact': "contact@http://localhost:4300/contact.js"
+        'mf1': "mf1@http://localhost:4300/mf1.js"
       },
       shared: {
         '@angular/animations': {singleton: true, strictVersion: true},

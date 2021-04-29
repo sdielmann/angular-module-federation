@@ -11,7 +11,7 @@ const routes: Routes = [
     loadChildren: () => HomeModule
   }, {
     path: 'contact',
-    loadChildren: () => import('contact/Module').then(m => m.ContactModule)
+    loadChildren: () => import('mf1/Contact').then(m => m.ContactModule)
   }, {
     path: '**',
     redirectTo: '/'
