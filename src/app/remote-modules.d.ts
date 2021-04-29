@@ -1,1 +1,2 @@
-declare module 'contact/Module';
+declare module 'mf1/Contact';
+declare module 'mf1/Clock';
