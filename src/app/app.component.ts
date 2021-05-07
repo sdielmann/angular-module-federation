@@ -27,7 +27,7 @@ export class AppComponent implements AfterViewInit {
       console.log(moduleFactory);
       const moduleRef = moduleFactory.create(this.injector);
       // @ts-ignore
-      const componentFactory = moduleRef.instance.resolveClockComponent();
+      const componentFactory = moduleRef.instance.resolveComponentFactory('app-clock');
       console.log(componentFactory);
       this.vc.createComponent(componentFactory, undefined, this.injector);
     } catch (e) {
