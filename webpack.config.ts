@@ -5,13 +5,13 @@ import { Configuration, container } from 'webpack';
 export default (config: Configuration, options: CustomWebpackBrowserSchema, targetOptions: TargetOptions) => {
 
   config.output.uniqueName = 'shell';
-  // config.output.publicPath = 'http://localhost:4200';
   config.optimization.runtimeChunk = false;
 
   config.plugins.push(
     new container.ModuleFederationPlugin({
+      remoteType: 'var',
       remotes: {
-        'mf1': "mf1@http://localhost:4300/mf1.js"
+        'mf1': "mf1"
       },
       shared: {
         '@angular/animations': {singleton: true, strictVersion: true},
