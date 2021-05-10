@@ -31,8 +31,4 @@ export class ClockModule {
 
     return this.componentFactoryResolver.resolveComponentFactory(cType);
   }
-
-  createComponent() {
-
-  }
 }
