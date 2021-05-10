@@ -5,32 +5,32 @@
   "cli": {
     "packageManager": "yarn"
   },
+  "defaultProject": "mf-shell",
   "projects": {
     "mf-shell": {
       "projectType": "application",
-      "schematics": {},
-      "root": "",
-      "sourceRoot": "src",
+      "root": "projects/mf-shell",
+      "sourceRoot": "projects/mf-shell/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "customWebpackConfig": {
-              "path": "webpack.config.ts"
+              "path": "projects/mf-shell/webpack.config.ts"
             },
             "outputPath": "dist/mf-shell",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "index": "projects/mf-shell/src/index.html",
+            "main": "projects/mf-shell/src/main.ts",
+            "polyfills": "projects/mf-shell/src/polyfills.ts",
+            "tsConfig": "projects/mf-shell/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/mf-shell/src/favicon.ico",
+              "projects/mf-shell/src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "projects/mf-shell/src/styles.scss"
             ],
             "scripts": []
           },
@@ -38,8 +38,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "projects/mf-shell/src/environments/environment.ts",
+                  "with": "projects/mf-shell/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -69,7 +69,7 @@
           "options": {
             "browserTarget": "mf-shell:build",
             "port": 4200,
-            "proxyConfig": "src/proxy.config.js"
+            "proxyConfig": "projects/mf-shell/src/proxy.config.js"
           },
           "configurations": {
             "production": {
@@ -87,8 +87,8 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
+              "projects/mf-shell/src/**/*.ts",
+              "projects/mf-shell/src/**/*.html"
             ]
           }
         },
@@ -101,6 +101,127 @@
           "configurations": {
             "production": {
               "devServerTarget": "mf-shell:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "mf1": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/mf1",
+      "sourceRoot": "projects/mf1/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/mf1",
+            "index": "projects/mf1/src/index.html",
+            "main": "projects/mf1/src/main.ts",
+            "polyfills": "projects/mf1/src/polyfills.ts",
+            "tsConfig": "projects/mf1/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/mf1/src/favicon.ico",
+              "projects/mf1/src/assets"
+            ],
+            "styles": [
+              "projects/mf1/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/mf1/src/environments/environment.ts",
+                  "with": "projects/mf1/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "port": 4300,
+            "browserTarget": "mf1:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "mf1:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "mf1:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/mf1/src/test.ts",
+            "polyfills": "projects/mf1/src/polyfills.ts",
+            "tsConfig": "projects/mf1/tsconfig.spec.json",
+            "karmaConfig": "projects/mf1/karma.conf.js",
+            "assets": [
+              "projects/mf1/src/favicon.ico",
+              "projects/mf1/src/assets"
+            ],
+            "styles": [
+              "projects/mf1/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/mf1/tsconfig.app.json",
+              "projects/mf1/tsconfig.spec.json",
+              "projects/mf1/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/mf1/e2e/protractor.conf.js",
+            "devServerTarget": "mf1:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "mf1:serve:production"
             }
           }
         }
