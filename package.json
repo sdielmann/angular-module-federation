@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:mf1": "ng serve --project mf1",
     "build": "ng build",
     "test": "jest",
     "lint": "ng lint",
