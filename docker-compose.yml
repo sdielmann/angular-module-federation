@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  shell:
+    container_name: mfshell
+    build:
+      context: ./
+      dockerfile: ./projects/mf-shell/Dockerfile
+    ports:
+      - 80:4200
+
+  mf1:
+    container_name: mf1
+    build:
+      context: ./
+      dockerfile: ./projects/mf1/Dockerfile
+    ports:
+      - 4300:4300

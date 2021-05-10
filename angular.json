@@ -118,8 +118,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "projects/mf1/webpack.config.ts"
+            },
             "outputPath": "dist/mf1",
             "index": "projects/mf1/src/index.html",
             "main": "projects/mf1/src/main.ts",
@@ -166,7 +169,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "port": 4300,
             "browserTarget": "mf1:build"
