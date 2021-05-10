@@ -64,6 +64,7 @@
     "protractor-cucumber-framework": "^7.0.2",
     "ts-node": "^8.3.0",
     "typescript": "~4.0.7",
+    "webpack-manifest-plugin": "^3.1.1",
     "winston": "^3.3.3"
   }
 }
