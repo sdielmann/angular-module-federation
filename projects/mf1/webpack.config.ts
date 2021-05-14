@@ -6,13 +6,13 @@ import * as path from 'path';
 export default (config: Configuration, options: CustomWebpackBrowserSchema, targetOptions: TargetOptions) => {
 
   config.output.uniqueName = 'contact';
-  config.output.publicPath = 'http://localhost:4300/';
   config.optimization.runtimeChunk = false;
+
   const hashMfModule = options.outputHashing === 'all' || options.outputHashing === 'bundles';
 
   config.plugins.push(
     new container.ModuleFederationPlugin({
-      name: "mf1",
+      name: "my_mf1",
       filename: `mf1${hashMfModule ? '.[contenthash]' : ''}.js`,
       exposes: {
         './Contact': path.resolve(__dirname, './src/app/contact/contact.module.ts'),
@@ -32,7 +32,9 @@ export default (config: Configuration, options: CustomWebpackBrowserSchema, targ
 
   // Create a manifest.json file that links default file names to their hashed names
   config.plugins.push(new WebpackManifestPlugin({
-    filter: (file) => /mf1(\..+)?.js$/.test(file.name)
+    filter: (file) => /mf1(\..+)?.js$/.test(file.name),
+    publicPath: '',
+    writeFilesToEmit: true
   }));
 
   return config;

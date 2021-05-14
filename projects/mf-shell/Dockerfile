@@ -16,7 +16,7 @@ RUN yarn install --frozen-lockfile
 COPY ./ ./
 
 # Build application
-RUN ng build --output-path=dist --configuration $configuration
+RUN ng build --output-path="dist/shell" --configuration $configuration
 
 # ----------------------------------------------------------------------------------------------------------------------
 # STAGE 2 Using nginx on alpine (reduced linux distro, optimized for container)
@@ -27,4 +27,4 @@ FROM openresty/openresty:1.17.8.1-alpine
 COPY ./projects/mf-shell/nginx /usr/local/openresty/nginx/conf
 
 # Copy angular web files into the nginx html directory
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/dist/shell /usr/share/nginx/html
