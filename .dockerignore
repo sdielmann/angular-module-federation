@@ -3,5 +3,6 @@
 .run/
 backend-mock/
 e2e/
+dist/
 testing/
 **.*.md
