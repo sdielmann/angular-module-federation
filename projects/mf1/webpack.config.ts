@@ -12,7 +12,7 @@ export default (config: Configuration, options: CustomWebpackBrowserSchema, targ
 
   config.plugins.push(
     new container.ModuleFederationPlugin({
-      name: "my_mf1",
+      name: "mf1",
       filename: `mf1${hashMfModule ? '.[contenthash]' : ''}.js`,
       exposes: {
         './Contact': path.resolve(__dirname, './src/app/contact/contact.module.ts'),

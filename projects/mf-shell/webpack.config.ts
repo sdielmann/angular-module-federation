@@ -14,7 +14,7 @@ export default (config: Configuration, options: CustomWebpackBrowserSchema, targ
 
       /* Map the remote module name (how they are imported here vs. how the remote module exposes them */
       remotes: {
-        'mf1': "my_mf1"
+        'mf1': 'mf1'
       },
 
       /* "Shared" modules will not be included in remote module bundles. */

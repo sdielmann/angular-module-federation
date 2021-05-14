@@ -2,11 +2,11 @@ version: '3.4'
 
 services:
   transcluder:
+    container_name: mftranscluder
+    build: ./deployment/webserver
     depends_on:
       - shell
       - mf1
-    container_name: mftranscluder
-    build: ./deployment/webserver
     ports:
       - 80:80
 
