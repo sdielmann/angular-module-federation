@@ -69,7 +69,7 @@
           "options": {
             "browserTarget": "mf-shell:build",
             "port": 4200,
-            "proxyConfig": "projects/mf-shell/src/proxy.config.js"
+            "proxyConfig": "projects/mf-shell/proxy.config.js"
           },
           "configurations": {
             "production": {

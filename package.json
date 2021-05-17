@@ -8,8 +8,7 @@
     "build": "ng build",
     "test": "jest",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "backend-mock": "ts-node --project backend-mock/tsconfig.json -r ./backend-mock/main.ts"
+    "e2e": "ng e2e"
   },
   "private": true,
   "resolutions": {

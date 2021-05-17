@@ -33,7 +33,7 @@ export default (config: Configuration, options: CustomWebpackBrowserSchema, targ
   // Create a manifest.json file that links default file names to their hashed names
   config.plugins.push(new WebpackManifestPlugin({
     filter: (file) => /mf1(\..+)?.js$/.test(file.name),
-    publicPath: 'http://localhost:4300/',
+    publicPath: '/mf1/',
     writeFilesToEmit: true
   }));
 

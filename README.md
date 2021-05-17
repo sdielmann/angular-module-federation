@@ -1,36 +1,57 @@
-# Steffen's Angular Boilerplate Project
+# Angular Dynamic Module Federation - Demo Project
 
-This project is based on [Angular CLI](https://github.com/angular/angular-cli) on version 11.2.2. The default CLI project setup has been adapted:
+This project is based on my [Angular Boilerplate Project](https://github.com/sdielmann/angular-boilerplate). It shows how to utilize the Webpack 5 `ModuleFederationPlugin` in large, distributed Angular projects that follow a Microfrontend-based architecture approach.
 
-- Karma has been replaced by [jest](https://jestjs.io/) as the unit test runner
-- Jasmine has been replace by [Cucumber](https://github.com/cucumber/cucumber-js) and [chai](https://www.chaijs.com/) in e2e tests
-- tslint and Codelyzer have been replaced by [eslint](https://eslint.org/)
-- Basic mock backend has been included based on [json-server](https://github.com/typicode/json-server)
+In contrast to other open-source projects and blog posts I have found, I have implemented a solution for dynamically loading remote modules at runtime:
 
-## Development server
+* Modules are loaded asynchronously only when needed
+* The remote entry JavaScript file for the module is hashed in production environments for cache busting. The current `src` url is automatically resolved before loading.
+* The remote modules can be used in Angular Routing using `RemoteModuleLoader.loadRemoteModule()`. Remote modules must define child routes for it to work.
+* Remote modules can define new components that can be used and created at runtime using the `RemoteComponentRenderer` directive.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Starting the project
 
-You can also test the application from a different device (e.g. your smartphone) in the same network. In order to do so, you must serve the app with `ng serve --host 0.0.0.0` which will make it accessible from outside the localhost. You can access the app by opening your local IP address and port in the browser, e.g. `http://192.168.100.1:4200`.
+### Locally (without Docker)
+To start the demo, you need to run the shell application and the remote microfrontend in parallel. Therefore run both of these scripts in separate instances of your favorite terminal:
 
-The mocked backend can be used as a datasource for the application. It is started with `npm run backend-mock` and served on port 9080. The proxy.config.js of the Angular development server is already set up to use this backend.
+```shell
+npm run start
 
-## Code scaffolding
+// and 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+npm run start:mf1
+```
 
-## Build
+The main (shell) application will be started on [Port 4200](http://localhost:4200), the microfrontend at [Port 4300](http://localhost:4300).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+> **Hint**: The remote entry will not be hashed in local development. Hashing is only enabled for production builds.
 
-## Running unit tests
+### Production (via Docker)
 
-Run `jest` to execute the unit tests via [jest](https://jestjs.io/).
+In production environments, Angular applications are usually bundled into a full-blown webserver like [nginx](https://www.nginx.com/). You can find more information how to configure Angular for production deployment on the [official Angular docs](https://angular.io/guide/deployment#fallback-configuration-examples).
 
-## Running end-to-end tests
+This project defines multiple Dockerfiles that build the Angular applications in production mode and bundle them into a basic nginx Docker image. You can also find the required nginx configurations.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+| App | Dockefile | nginx config |
+| --- | --- | --- |
+| Shell | [Dockerfile](./projects/mf-shell/Dockerfile) | [nginx.conf](./projects/mf-shell/nginx/nginx.conf) |
+| Microfrontend | [Dockerfile](./projects/mf1/Dockerfile) | [nginx.conf](./projects/mf1/nginx/nginx.conf) |
 
-## Further help
+To start the application, use docker-compose in the project root dir:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```shell
+docker-compose up -d --build
+```
+
+The compose file will start 3 containers for 3 nginx servers in total:
+
+1. Webserver for the shell application
+1. Webserver for the microfrontend
+1. Webserver as a reverse-proxy for the two above
+
+When the file has been deployed, you can access the application at [localhost](http://localhost).
+
+## Useful links
+
+* [My Angular Boilerplate Project](https://github.com/sdielmann/angular-boilerplate)
+* [Webpack ModuleFederation Docs](https://webpack.js.org/concepts/module-federation)

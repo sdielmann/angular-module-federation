@@ -13,7 +13,7 @@ const routes: Routes = [
   }, {
     path: 'contact',
     loadChildren: () => RemoteModuleLoader.loadRemoteModule('mf1/Contact', {
-      manifest: 'http://localhost:4300/manifest.json',
+      manifest: '/mf1/manifest',
       file: 'mf1.js'
     }).then(m => m.ContactModule)
   }, {
