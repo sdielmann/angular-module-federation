@@ -9,6 +9,8 @@ In contrast to other open-source projects and blog posts I have found, I have im
 * The remote modules can be used in Angular Routing using `RemoteModuleLoader.loadRemoteModule()`. Remote modules must define child routes for it to work.
 * Remote modules can define new components that can be used and created at runtime using the `RemoteComponentRenderer` directive.
 
+> Since this is only a tech demo project, I have no implemented any tests.
+
 ## Starting the project
 
 ### Locally (without Docker)
