@@ -1,5 +1,6 @@
 import { CustomWebpackBrowserSchema, TargetOptions } from '@angular-builders/custom-webpack';
 import { Configuration, container } from 'webpack';
+import { dependencies } from '../../package.json';
 
 
 export default (config: Configuration, options: CustomWebpackBrowserSchema, targetOptions: TargetOptions) => {
@@ -13,7 +14,7 @@ export default (config: Configuration, options: CustomWebpackBrowserSchema, targ
       shared: {
         '@angular/animations': {singleton: true, strictVersion: true},
         '@angular/core': {singleton: true, strictVersion: true},
-        '@angular/common': {singleton: true, strictVersion: true},
+        '@angular/common': {singleton: true, strictVersion: true, requiredVersion: dependencies['@angular/common'] },
         '@angular/forms': {singleton: true, strictVersion: true},
         '@angular/platform-browser': {singleton: true, strictVersion: true},
         '@angular/router': {singleton: true, strictVersion: true},
