@@ -9,14 +9,6 @@ export default (config: Configuration, options: CustomWebpackBrowserSchema, targ
 
   config.plugins.push(
     new container.ModuleFederationPlugin({
-      /* Inform webpack that we will take care of loading the remote modules ourself */
-      remoteType: 'var',
-
-      /* Map the remote module name (how they are imported here vs. how the remote module exposes them */
-      remotes: {
-        'mf1': 'mf1'
-      },
-
       /* "Shared" modules will not be included in remote module bundles. */
       shared: {
         '@angular/animations': {singleton: true, strictVersion: true},

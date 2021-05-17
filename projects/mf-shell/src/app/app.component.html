@@ -1,9 +1,8 @@
-
 <header>
   <nav>
     <ul>
       <li>
-        <a routerLink="/" routerLinkActive="active"[routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           Home
         </a>
       </li>
@@ -13,7 +12,9 @@
         </a>
       </li>
     </ul>
-    <ng-container #vc></ng-container>
+    <ng-container
+      *remoteComponentRenderer="'app-clock'; manifest:'http://localhost:4300/manifest.json'; moduleFile:'mf1.js'">
+    </ng-container>
   </nav>
 </header>
 
