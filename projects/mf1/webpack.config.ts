@@ -16,7 +16,7 @@ export default (config: Configuration, options: CustomWebpackBrowserSchema, targ
       filename: `mf1${hashMfModule ? '.[contenthash]' : ''}.js`,
       exposes: {
         './Contact': path.resolve(__dirname, './src/app/contact/contact.module.ts'),
-        './Clock': path.resolve(__dirname, './src/app/clock/clock.module.ts'),
+        './Clock': path.resolve(__dirname, './src/app/clock/index.ts'),
       },
       shared: {
         '@angular/animations': {singleton: true, strictVersion: true},
@@ -33,7 +33,7 @@ export default (config: Configuration, options: CustomWebpackBrowserSchema, targ
   // Create a manifest.json file that links default file names to their hashed names
   config.plugins.push(new WebpackManifestPlugin({
     filter: (file) => /mf1(\..+)?.js$/.test(file.name),
-    publicPath: '',
+    publicPath: 'http://localhost:4300/',
     writeFilesToEmit: true
   }));
 

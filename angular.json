@@ -171,8 +171,9 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
+            "browserTarget": "mf1:build",
             "port": 4300,
-            "browserTarget": "mf1:build"
+            "proxyConfig": "projects/mf1/src/proxy.config.js"
           },
           "configurations": {
             "production": {
