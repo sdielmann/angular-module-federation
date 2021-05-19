@@ -2,29 +2,25 @@ import { Directive, Injector, Input, OnInit, ViewContainerRef } from '@angular/c
 import { RemoteModuleLoader } from '../loader-service/remote-module-loader.service';
 
 
+type RemoteModule = 'mf1/Clock' | 'mf1/Contact';
+
 @Directive({
   selector: '[remoteComponentRenderer]'
 })
 export class RemoteComponentRenderer implements OnInit {
 
   @Input()
-  set remoteComponentRenderer(tag: string) {
-    this._componentTag = tag;
+  set remoteComponentRenderer(componentName: string) {
+    this._componentName = componentName;
   }
 
   @Input()
-  set remoteComponentRendererManifest(manifestUrl: string) {
-    this._manifestUrl = manifestUrl;
+  set remoteComponentRendererModule(moduleName: RemoteModule) {
+    this._moduleName = moduleName;
   }
 
-  @Input()
-  set remoteComponentRendererModuleFile(moduleFile: string) {
-    this._moduleFile = moduleFile;
-  }
-
-  private _componentTag: string;
-  private _manifestUrl: string;
-  private _moduleFile: string;
+  private _componentName: string;
+  private _moduleName: RemoteModule;
 
   constructor(
     private viewContainerRef: ViewContainerRef,
@@ -38,10 +34,7 @@ export class RemoteComponentRenderer implements OnInit {
 
   private async renderComponent() {
     try {
-      const module = await this.remoteModuleLoaderService.loadRemoteModule('mf1/Clock', {
-        manifest: this._manifestUrl,
-        file: this._moduleFile
-      });
+      const module = await this.remoteModuleLoaderService.loadRemoteModule(this._moduleName);
       const componentFactory = this.remoteModuleLoaderService.getComponentFactory(module.ClockComponent);
       this.viewContainerRef.createComponent(componentFactory, undefined, this.injector);
     } catch (e) {
