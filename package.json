@@ -6,9 +6,7 @@
     "start": "ng serve",
     "start:mf1": "ng serve --project mf1",
     "build": "ng build",
-    "test": "jest",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint": "ng lint"
   },
   "private": true,
   "resolutions": {
