@@ -35,7 +35,7 @@ export class RemoteComponentRenderer implements OnInit {
   private async renderComponent() {
     try {
       const module = await this.remoteModuleLoaderService.loadRemoteModule(this._moduleName);
-      const componentFactory = this.remoteModuleLoaderService.getComponentFactory(module.ClockComponent);
+      const componentFactory = this.remoteModuleLoaderService.getComponentFactory(module[this._componentName]);
       this.viewContainerRef.createComponent(componentFactory, undefined, this.injector);
     } catch (e) {
       console.error(e);
